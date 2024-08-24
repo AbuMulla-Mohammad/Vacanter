@@ -20,7 +20,20 @@ export const registerValidationSchema = Yup.object({
     // confirmPassword: Yup.string()
     // .oneOf([Yup.ref('password'), null], 'Passwords must match')
     //     .required('confirm password is Required'),
-    UserType:Yup.string().oneOf(['Applicant', 'Employee'], 'Invalid User Type').required('User Type is required'),
+    UserType:Yup.string().oneOf(['Applicant', 'Employer'], 'Invalid User Type').required('User Type is required'),
+});
+
+export const jobPostValidationSchema = Yup.object({
+    title: Yup.string().required('Title is required').max(255, 'Title cannot exceed 255 characters'),
+    company: Yup.string().required('Company is required').max(255, 'Company cannot exceed 255 characters'),
+    location: Yup.string().required('Location is required').max(255, 'Location cannot exceed 255 characters'),
+    description: Yup.string().required('Description is required').min(10,'Description section must be at least 10 characters'),
+    type: Yup.string().required('Type is required').oneOf(['full-time', 'part-time', 'contract', 'temporary']),
+    Languages: Yup.string().required('Languages are required'),
+    WorkExperience: Yup.string().required('Work Experience is required'),
+    Education: Yup.string().required('Education is required'),
+    Skills: Yup.string().required('Skills are required'),
+    personalInformation: Yup.string().required('Personal Information is required')
 });
 
 // Add more validation schemas for other forms as needed.
