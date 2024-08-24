@@ -23,7 +23,7 @@ export default {
           hoverBackground: '#CED4DA',
         },
         accent: {
-          error: '#DC3545',
+          error: '#e39aa1',
           warning: '#FFC107',
         },
         neutral: {
