@@ -13,7 +13,7 @@ export default function Register() {
         { name: 'email', label: 'Email', type: 'email', placeholder: "Enter Your Email Here" },
         { name: 'password', label: 'Password', type: 'password', placeholder: "Enter Your Password Here" },
         { name: 'username', label: 'User Name', type: 'text', placeholder: "Enter Your 'User Name' Here" },
-        { name: 'UserType', label: 'User Type', type: 'select', options: ['Applicant', 'Employee'], placeholder: "Select User Type" },
+        { name: 'UserType', label: 'User Type', type: 'select', options: ['Applicant', 'Employer'], placeholder: "Select User Type" },
     ];
     const initialValues = {
         email: '',
@@ -55,7 +55,7 @@ export default function Register() {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex sit sequi delectus quis libero tempore corporis culpa obcaecati, animi adipisci, nobis laudantium reiciendis facilis dolore assumenda enim repellat labore. Labore.</p>
                 <button className='border-2 border-white px-6 py-2 rounded-lg capitalize ' onClick={() => navigate('/Login')}>Log In!</button>
             </div>
-            <div className={`w-[50%] flex flex-col justify-center items-center gap-10 p-3 translate-x-[100%] transition-all duration-700 ${animate ? 'translate-x-[0]' : ''}`}>
+            <div className={`w-[50%] flex flex-col justify-center items-center gap-10 p-3 translate-x-[-100%] transition-all duration-700 ${animate ? 'translate-x-[0]' : 'translate-x-[100%]'}`}>
                 <h2 className='text-4xl font-bold '>Sign Up</h2>
                 <Form
                     fields={registerFields}
