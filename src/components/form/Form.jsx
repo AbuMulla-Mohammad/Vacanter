@@ -25,7 +25,7 @@ export default function Form({ fields, initialValues, onSubmit, validationSchema
                         <label className="px-2" htmlFor={field.name}>{field.label}</label>
                         {field.type === 'select' ? (
                             <select
-                                className="px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm outline-none"
+                                className={`px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm outline-none ${formik.touched[field.name] && formik.errors[field.name] && "border-2 border-accent-error"}`}
                                 name={field.name}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -36,9 +36,18 @@ export default function Form({ fields, initialValues, onSubmit, validationSchema
                                     <option key={idx} value={option} label={option} />
                                 ))}
                             </select>
+                        ) : field.type === 'textArea' ? (
+                            <textarea
+                                className={`px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm outline-none ${formik.touched[field.name] && formik.errors[field.name] && "border-2 border-accent-error"}`}
+                                name={field.name}
+                                type={field.type}
+                                placeholder={field.placeholder}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values[field.name]} id=""></textarea>
                         ) : (
                             <input
-                                className="px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm"
+                                className={`px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm ${formik.touched[field.name] && formik.errors[field.name] && "border-2 border-accent-error"}`}
                                 name={field.name}
                                 type={field.type}
                                 placeholder={field.placeholder}
@@ -51,14 +60,15 @@ export default function Form({ fields, initialValues, onSubmit, validationSchema
                             <p className={`text-red-600  text-sm px-2 capitalize transition-all duration-500 h-0 opacity-0  ${formik.touched[field.name] && formik.errors[field.name] && "opacity-100 h-full"}`}>{formik.errors[field.name]}</p>
                         )}
                     </div>
-                ))}
+                ))
+                }
                 <button className="bg-primary transition-all duration-500 ease-out hover:bg-primary-hover rounded-xl p-1 disabled:bg-primary-disabled text-white w-[85%] py-3 m-auto" disabled={!formik.isValid || !formik.dirty || isLoading} type="submit">
                     {
                         isLoading ? "Loading..." : buttonText
                     }
                 </button>
-            </form>
+            </form >
 
-        </div>
+        </div >
     );
 }
