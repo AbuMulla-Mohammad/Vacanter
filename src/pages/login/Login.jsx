@@ -35,7 +35,7 @@ export default function Login() {
                     position: 'top-center',
                 });
                 restForm();
-                navigate("/Home");
+                navigate("/");
             }
         } catch (error) {
             console.log(error)
@@ -52,7 +52,7 @@ export default function Login() {
 
     return (
         <>
-            <div className=' h-[650px] relative  flex justify-center items-center w-[70%] rounded-3xl overflow-hidden shadow-[6px_11px_57px_-12px_rgba(0,0,0,0.75)]' >
+            <div className=' h-[650px] relative  flex justify-center items-center w-[70%] rounded-3xl overflow-hidden shadow-[6px_11px_57px_-12px_rgba(0,0,0,0.75)] bg-white' >
                 <div className={`w-[50%] flex flex-col justify-center items-center gap-10 p-3 translate-x-[-100%] transition-all duration-700 ease-out ${animate ? 'translate-x-[0]' : ''}`}>
                     <h2 className='text-4xl font-bold '>LOG IN</h2>
                     <Form

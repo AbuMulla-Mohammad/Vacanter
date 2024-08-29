@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "sonner";
 
-export default function JobApplicationUploader() {
+export default function JobPostUploader() {
     const userId = useSelector(state => state.userInfo.userInfo._id)
     const userToken = useSelector(state => state.auth.token);
     console.log('userId', userId, "token", userToken)
@@ -75,8 +75,12 @@ export default function JobApplicationUploader() {
 
         } catch (error) {
             console.log(error)
-            if (error.response.status == 401) {
+            if (error.response?.status == 401) {
                 toast.error('Unauthorized', {
+                    position: 'top-center',
+                });
+            } else if (error.message == 'Network Error') {
+                toast.error('Network Error', {
                     position: 'top-center',
                 });
             } else {
@@ -90,13 +94,12 @@ export default function JobApplicationUploader() {
     }
     return (
         <>
-            <div className="bg-white h-full flex justify-center items-center  rounded-lg shadow-lg p-4">
+            <div className="bg-white flex justify-center items-center  rounded-lg shadow-lg p-4">
                 <div className="flex flex-col justify-evenly  w-full h-full ">
                     <h1>
                         Add A Job Application
                     </h1>
                     <button onClick={() => {
-
                         openModal();
                     }} className="border-[3px] border-dashed border-primary-hover bg-[#edf2ff] flex flex-col items-center justify-evenly  p-4 rounded-lg w-full h-[80%] text-primary-hover hover:bg-white transition-all duration-500   ">
                         <div className="iconWraper w-[50px] h-[50px]">
@@ -111,8 +114,8 @@ export default function JobApplicationUploader() {
                 onClose={closeModal}
                 title="Job Application Form"
                 footer={<Button onClick={closeModal}>Close</Button>}
-                width="80%"
                 height="80%"
+                size={'6xl'}
             >
                 <Form
                     fields={sections}

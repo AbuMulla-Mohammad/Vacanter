@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "../../features/auth/authSlice";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { clearUserInfo } from "../../features/userInfo/userInfoSlice";
+import './Navbar.css'
 
 export default function Navbar() {
     const token = useSelector(state => state.auth.token)
@@ -47,23 +48,23 @@ export default function Navbar() {
         //         </div>
         //     </div>
         // </nav>
-        <header className=" border-b-2 w-[85%] m-auto">
-            <div className=" flex justify-between m-auto items-center">
-                <div className="logo">
+        <header className="  rounded-full  w-full   bg-cover  backdrop-blur-3xl pt-1">
+            <div className=" flex justify-between m-auto items-center py-2 bg-white px-4 rounded-full">
+                <div className="logo font-semibold text-primary">
                     VACANTER
                 </div>
                 <nav className="flex gap-2 ">
-                    <NavLink className={` px-2 py-1 transition-all duration-500 rounded-lg hover:bg-primary-hover hover:text-white hover:px-5`}>
-                        link1
+                    <NavLink className={` NavLink nav-link px-2 py-1 transition-all duration-500 rounded-lg `}>
+                        Home
                     </NavLink>
-                    <NavLink className={` px-2 py-1 transition-all duration-500 rounded-lg hover:bg-primary-hover hover:text-white hover:px-5`}>
-                        link1
+                    <NavLink to={'/test'} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg `}>
+                        Services
                     </NavLink>
-                    <NavLink className={` px-2 py-1 transition-all duration-500 rounded-lg hover:bg-primary-hover hover:text-white hover:px-5`}>
-                        link1
+                    <NavLink to={'/test2'} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg`}>
+                        About
                     </NavLink>
-                    <NavLink className={` px-2 py-1 transition-all duration-500 rounded-lg hover:bg-primary-hover hover:text-white hover:px-5`}>
-                        link1
+                    <NavLink to={'/test'} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg `}>
+                        Pricing
                     </NavLink>
                 </nav>
                 <div>
@@ -77,13 +78,17 @@ export default function Navbar() {
                             </button>
                         </div>) : (
                             <div className="protectedLinks flex gap-7 items-center ">
-                                <NavLink to={'/UserProfile'}>
-                                    profile
+                                <NavLink to={'/UserProfile'} className=' px-2 py-1 transition-all duration-500 rounded-lg '>
+
+                                    <svg width={20} className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z" />
+                                    </svg>
+
                                 </NavLink>
-                                <div>
+                                {/* <div>
                                     notification
-                                </div>
-                                <button className="bg-red-400 p-3" onClick={handleLogOutClick}>Logout</button>
+                                </div> */}
+                                <button className="bg-red-500 px-3 py-2 text-white rounded-md transition-all duration-500 hover:bg-red-400" onClick={handleLogOutClick}>Logout</button>
                             </div>
                         )
 

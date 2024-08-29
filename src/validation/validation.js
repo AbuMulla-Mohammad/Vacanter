@@ -35,5 +35,19 @@ export const jobPostValidationSchema = Yup.object({
     Skills: Yup.string().required('Skills are required'),
     personalInformation: Yup.string().required('Personal Information is required')
 });
-
-// Add more validation schemas for other forms as needed.
+export const ApplyForAJobValidationSchema = Yup.object().shape({
+    coverLetter: Yup.string()
+        .required('Cover Letter is required')
+        .min(50, 'Cover Letter must be at least 50 characters long')
+        .max(1500, 'Cover Letter must be less than 1500 characters long'),
+    resume: Yup.mixed()
+        .required('Resume is required')
+        .test('fileFormat', 'Unsupported Format', value => {
+            if (value) {
+                const fileName = value.name.toLowerCase();
+                const supportedFormats = ['.pdf', '.docx', '.doc'];
+                return supportedFormats.some(format => fileName.endsWith(format));
+            }
+            return false;
+        }),
+});

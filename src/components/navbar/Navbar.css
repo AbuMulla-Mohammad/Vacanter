@@ -1,0 +1,66 @@
+/* header {
+
+}
+header nav .NavLink{
+    position: relative;
+    transition: all 0.5 ease !important;
+}
+header nav .NavLink:hover{
+    
+}
+header nav .NavLink.active{
+    position: relative;
+}
+header nav .NavLink.active::after,
+header nav .NavLink:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #2fd3de; 
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+  }
+  
+  header nav .NavLink.active:hover::after {
+    transform: scaleX(1);
+  } */
+header {
+
+}
+
+header nav .NavLink {
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+header nav .NavLink:hover {
+    padding-inline: 10px;
+}
+
+header nav .NavLink::after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 0;
+    background-color: var(--color-primary);
+    bottom: 0;
+    left: 0;
+    transition: width 0.5s ease;
+}
+
+header nav .NavLink.active::after,
+header nav .NavLink:hover::after {
+    width: 100%;
+}
+
+header .icon {
+    fill: currentColor;
+    transition: fill 0.3s ease;
+}
+
+header .icon:hover {
+    fill: var(--color-primary); 
+}

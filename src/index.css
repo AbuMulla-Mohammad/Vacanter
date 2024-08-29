@@ -5,9 +5,29 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Merriweather", serif;
+    font-family: "Montserrat", sans-serif;
     line-height: 1.6;
 }
+:root {
+    --color-primary: #2fd3de;
+    --color-primary-light: #5ee0e8;
+    --color-primary-hover: #28b8c2;
+    --color-primary-disabled: #b3eaf0;
+  
+    --color-secondary-success: #28A745;
+    --color-secondary-lightBackground: #f4f4f4;
+    --color-secondary-hoverBackground: #CED4DA;
+  
+    --color-accent-error: #e39aa1;
+    --color-accent-warning: #FFC107;
+  
+    --color-neutral-white: #FFFFFF;
+    --color-neutral-text: #505357;
+    font-size: 14px
+  }
 input{
     outline: none;
+}
+body{
+    background-color: var(--color-secondary-lightBackground);
 }

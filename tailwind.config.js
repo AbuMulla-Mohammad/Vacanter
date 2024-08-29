@@ -29,6 +29,7 @@ export default {
         neutral: {
           white: '#FFFFFF', 
           text: '#505357',
+          textSecondary: '#5E6368',
         },
       },
     },
