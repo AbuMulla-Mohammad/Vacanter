@@ -14,12 +14,19 @@ export default function Form({ fields, initialValues, onSubmit, validationSchema
         console.log(formik.errors);
     }, [formik.errors]);
 
+    const handleFileChange = (e) => {
+        const { name, files } = e.target;
+        if (files.length > 0) {
+            formik.setFieldValue(name, files[0]);
+        }
+    };
+
     return (
         <div className="flex justify-center items-center w-full">
             <form onSubmit={(e) => {
                 e.preventDefault();
                 formik.handleSubmit();
-            }} className="flex flex-col gap-3  justify-center w-[90%] ">
+            }} className="flex flex-col gap-3 justify-center w-[90%]">
                 {fields?.map((field, index) => (
                     <div key={index} className="flex flex-col gap-3 w-full">
                         <label className="px-2" htmlFor={field.name}>{field.label}</label>
@@ -40,11 +47,19 @@ export default function Form({ fields, initialValues, onSubmit, validationSchema
                             <textarea
                                 className={`px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm outline-none ${formik.touched[field.name] && formik.errors[field.name] && "border-2 border-accent-error"}`}
                                 name={field.name}
-                                type={field.type}
                                 placeholder={field.placeholder}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values[field.name]} id=""></textarea>
+                                value={formik.values[field.name]}
+                            />
+                        ) : field.type === 'file' ? (
+                            <input
+                                className={`px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm ${formik.touched[field.name] && formik.errors[field.name] && "border-2 border-accent-error"}`}
+                                name={field.name}
+                                type="file"
+                                onChange={handleFileChange}
+                                onBlur={formik.handleBlur}
+                            />
                         ) : (
                             <input
                                 className={`px-3 py-2 rounded-xl border-2 border-[#eee] bg-[#eaebed] placeholder:text-[#333] placeholder:text-sm ${formik.touched[field.name] && formik.errors[field.name] && "border-2 border-accent-error"}`}
@@ -57,18 +72,20 @@ export default function Form({ fields, initialValues, onSubmit, validationSchema
                             />
                         )}
                         {(
-                            <p className={`text-red-600  text-sm px-2 capitalize transition-all duration-500 h-0 opacity-0  ${formik.touched[field.name] && formik.errors[field.name] && "opacity-100 h-full"}`}>{formik.errors[field.name]}</p>
+                            <p className={`text-red-600 text-sm px-2 capitalize transition-all duration-500 h-0 opacity-0 ${formik.touched[field.name] && formik.errors[field.name] && "opacity-100 h-full"}`}>
+                                {formik.errors[field.name]}
+                            </p>
                         )}
                     </div>
-                ))
-                }
-                <button className="bg-primary transition-all duration-500 ease-out hover:bg-primary-hover rounded-xl p-1 disabled:bg-primary-disabled text-white w-[85%] py-3 m-auto" disabled={!formik.isValid || !formik.dirty || isLoading} type="submit">
-                    {
-                        isLoading ? "Loading..." : buttonText
-                    }
+                ))}
+                <button
+                    className="bg-primary transition-all duration-500 ease-out hover:bg-primary-hover rounded-xl p-1 disabled:bg-primary-disabled text-white w-[85%] py-3 m-auto"
+                    disabled={!formik.isValid || !formik.dirty || isLoading}
+                    type="submit"
+                >
+                    {isLoading ? "Loading..." : buttonText}
                 </button>
-            </form >
-
-        </div >
+            </form>
+        </div>
     );
 }
