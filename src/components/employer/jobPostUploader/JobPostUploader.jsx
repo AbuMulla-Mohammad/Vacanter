@@ -94,10 +94,10 @@ export default function JobPostUploader() {
     }
     return (
         <>
-            <div className="bg-white flex justify-center items-center  rounded-lg shadow-lg p-4">
+            <div className="bg-white flex justify-center items-center  rounded-lg shadow-lg p-4 h-full">
                 <div className="flex flex-col justify-evenly  w-full h-full ">
                     <h1>
-                        Add A Job Application
+                        Add A Job Post
                     </h1>
                     <button onClick={() => {
                         openModal();
@@ -105,7 +105,7 @@ export default function JobPostUploader() {
                         <div className="iconWraper w-[50px] h-[50px]">
                             <img src="/public/icons/add.svg" className="w-[100%]" alt="" />
                         </div>
-                        <span>Click To Add A Job Applecation </span>
+                        <span>Click To Add A Job Post </span>
                     </button>
                 </div>
             </div>

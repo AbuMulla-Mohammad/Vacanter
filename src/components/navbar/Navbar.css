@@ -57,7 +57,7 @@ header nav .NavLink:hover::after {
 }
 
 header .icon {
-    fill: currentColor;
+    fill: #656565;
     transition: fill 0.3s ease;
 }
 

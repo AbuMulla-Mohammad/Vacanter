@@ -77,12 +77,15 @@ export default function AllJobPosts() {
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <button
-                                            className="text-neutral-textSecondary text-[12px] px-[40px] py-[8px] border rounded-md transition-all duration-500 hover:text-white hover:bg-[#04ADE6]"
+                                            className="text-neutral-textSecondary text-[12px] px-[40px] py-[8px] border rounded-md transition-all duration-500 hover:text-white hover:bg-primary"
                                             onClick={() => openDetailModal(jobPost._id)}
                                         >
                                             View details...
                                         </button>
-                                        <button className=" text-[12px] px-[40px] py-[8px] border rounded-md font-bold transition-all duration-500 text-[#04ADE6] bg-[#04ade643] hover:text-white hover:bg-[#04ADE6]">
+                                        <button
+                                            className=" text-[12px] px-[40px] py-[8px] border rounded-md font-bold transition-all duration-500 text-[#04ADE6] bg-primary-light hover:text-white hover:bg-primary"
+                                            onClick={() => openFormModal(jobPost._id)}
+                                        >
                                             Apply Now
                                         </button>
                                     </div>
