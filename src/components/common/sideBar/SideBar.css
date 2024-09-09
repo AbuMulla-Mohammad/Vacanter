@@ -1,0 +1,11 @@
+.profileSideBar{
+
+}
+.profileSideBar .active{
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+.profileSideBar ul li:hover .settingIcon,
+.profileSideBar .active svg.settingIcon{
+    transform: rotate(90deg);
+}
