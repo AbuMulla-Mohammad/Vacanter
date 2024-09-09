@@ -35,7 +35,7 @@ export default function Login() {
                     position: 'top-center',
                 });
                 restForm();
-                navigate("/");
+                navigate("/Home");
             }
         } catch (error) {
             console.log(error)

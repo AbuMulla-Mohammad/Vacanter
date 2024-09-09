@@ -12,8 +12,8 @@ export default {
       
       colors: {
         primary: {
-          DEFAULT: '#2fd3de',
-          light: '#5ee0e8',
+          DEFAULT: '#04ADE6',//past => 2fd3de
+          light: '#04ade643',//past=> 5ee0e8
           hover: '#28b8c2',
           disabled: '#b3eaf0',
         },
