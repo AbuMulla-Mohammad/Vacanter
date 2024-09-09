@@ -8,7 +8,7 @@ const Root = () => {
             <div className='bg-[#E7E6E6]'>
                 <div className=' w-[85%] m-auto' >
                     <Navbar />
-                    <div className="m-auto p-2 ">
+                    <div className="m-auto py-2 ">
 
                         <Outlet />
                     </div>

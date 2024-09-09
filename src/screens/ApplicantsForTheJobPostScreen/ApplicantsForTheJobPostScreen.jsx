@@ -4,6 +4,7 @@ import ApplicantsForTheJobPost from './../../components/employer/applicantsForTh
 
 export default function ApplicantsForTheJobPostScreen() {
     const { id } = useParams();
+    console.log("ApplicantsForTheJobPostScreen", id)
     return (
         <div className='w-full min-h-screen bg-secondary-lightBackground'>
             <ApplicantsForTheJobPost id={id} />
