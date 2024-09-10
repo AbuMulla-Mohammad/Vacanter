@@ -6,6 +6,7 @@ import ApplingForm from "../../Applicant/applingForm/ApplingForm";
 import Loader from "../loader/Loader";
 import { formatDate } from "../../../utils/dates";
 import { useSelector } from "react-redux";
+import Pagination from "../../pagination/Pagination";
 
 export default function AllJobPosts() {
     const { jobLocation, jobType } = useSelector(state => state.filters);
@@ -14,7 +15,9 @@ export default function AllJobPosts() {
     const [isLoading, setIsloading] = useState(false);
     const [openDetailModalId, setOpenDetailModalId] = useState(null);
     const [openFormModalId, setOpenFormModalId] = useState(null);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+    const itemsPerPage = 8;
     const openDetailModal = (id) => setOpenDetailModalId(id);
     const closeDetailModal = () => setOpenDetailModalId(null);
 
@@ -24,8 +27,9 @@ export default function AllJobPosts() {
     const getJobApplications = async () => {
         try {
             setIsloading(true);
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/jobPoste/all`);
-            setJobPosts(data.jobPost);
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/jobPoste/sort?page=${currentPage}&limit=${itemsPerPage}`);
+            setJobPosts(data.data);
+            setTotalItems(data.total);
         } catch (error) {
             console.log(error);
         } finally {
@@ -35,26 +39,25 @@ export default function AllJobPosts() {
 
     useEffect(() => {
         getJobApplications();
-    }, []);
+    }, [currentPage, itemsPerPage]);
 
     if (isLoading) {
         return <Loader />;
     }
 
     // Apply the filters here
-    const filteredJobPosts = jobPosts.filter(jobPost => {
+    const filteredJobPosts = jobPosts?.filter(jobPost => {
         const matchesLocation = jobLocation === 'all' || jobPost.location.toLowerCase() === jobLocation;
         const matchesType = jobType === 'all' || jobPost.type === jobType;
         return matchesLocation && matchesType;
     });
 
     return (
-        <div className="w-full ">
+        <div className="w-full flex flex-col gap-5 justify-center ">
             <div className="flex flex-wrap gap-4 justify-between  ">
                 {filteredJobPosts && filteredJobPosts.length > 0 ? (
                     filteredJobPosts
                         .slice()
-                        .reverse()
                         .map((jobPost) => (
                             <div key={jobPost._id} className="shadow-md rounded-lg p-6 bg-white w-[49%] flex flex-col gap-4">
                                 <div className="postHeader">
@@ -143,6 +146,14 @@ export default function AllJobPosts() {
                 ) : (
                     <div>There are no job applications</div>
                 )}
+            </div>
+            <div>
+                <Pagination
+                    currentPage={currentPage}
+                    totalItems={totalItems}
+                    itemsPerPage={itemsPerPage}
+                    onPageChange={setCurrentPage}
+                />
             </div>
         </div>
     );
