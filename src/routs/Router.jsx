@@ -10,18 +10,19 @@ import SettingsScreen from "../screens/SettingsScreen/SettingsScreen";
 import UserInfoScreen from "../screens/UserInfoScreen/UserInfoScreen";
 import LandingPageScreen from "../screens/LandingPageScreen/LandingPageScreen";
 import RedirectToLandingOrHome from "../components/common/redirectToLandingOrHome/RedirectToLandingOrHome";
+import EmployerRoutes from "../ProtectedRoutes/EmployerRoutes";
+import PublicRoutes from "../ProtectedRoutes/PublicRoutes";
+import PrivateRoutes from "../ProtectedRoutes/PrivateRoutes";
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <RedirectToLandingOrHome />
     },
-    // Landing page
     {
         path: '/landing',
         element: <LandingPageScreen />
     },
     {
-        path: '/',
         element: <Root />,
         children: [
             {
@@ -30,40 +31,68 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/Home',
-                element: <HomeScreen />
+                element:
+                    <PrivateRoutes>
+                        <HomeScreen />
+                    </PrivateRoutes>
             },
             {
                 path: '/Login',
-                element: <LoginScreen />
+                element:
+                    <PublicRoutes>
+                        <LoginScreen />
+                    </PublicRoutes>
             },
             {
                 path: '/Register',
-                element: <RegisterScreen />
+                element:
+                    <PublicRoutes>
+                        <RegisterScreen />
+                    </PublicRoutes>
             },
             {
                 path: '/UserProfile',
-                element: <UserProfileScreen />,
+                element:
+                    <PrivateRoutes>
+                        <UserProfileScreen />
+                    </PrivateRoutes>,
                 children: [
                     {
-                        path: 'personlaInfo',
-                        element: <UserInfoScreen />
+                        path: 'personalInfo',
+                        element:
+                            <PrivateRoutes>
+                                <UserInfoScreen />
+                            </PrivateRoutes>
                     },
                     {
                         path: 'jobPost',
                         children: [
                             {
                                 path: '',
-                                element: <EmployerJobPostsScreen />,
+                                element:
+                                    <PrivateRoutes>
+                                        <EmployerRoutes>
+                                            <EmployerJobPostsScreen />
+                                        </EmployerRoutes>
+                                    </PrivateRoutes>,
                             },
                             {
                                 path: ':id',
-                                element: <ApplicantsForTheJobPostScreen />
+                                element:
+                                    <PrivateRoutes>
+                                        <EmployerRoutes>
+                                            <ApplicantsForTheJobPostScreen />
+                                        </EmployerRoutes>
+                                    </PrivateRoutes>
                             }
                         ]
                     },
                     {
                         path: 'settings',
-                        element: <SettingsScreen />
+                        element:
+                            <PrivateRoutes>
+                                <SettingsScreen />
+                            </PrivateRoutes>
                     },
                 ]
             }
