@@ -10,7 +10,8 @@ import Pagination from "../../pagination/Pagination";
 
 export default function AllJobPosts() {
     const { jobLocation, jobType } = useSelector(state => state.filters);
-    console.log('AllJobApllications jobType', jobType);
+    const { userInfo } = useSelector(state => state.userInfo);
+    useEffect(() => { console.log("userInfo", userInfo.UserType) }, [userInfo])
     const [jobPosts, setJobPosts] = useState([]);
     const [isLoading, setIsloading] = useState(false);
     const [openDetailModalId, setOpenDetailModalId] = useState(null);
@@ -85,12 +86,15 @@ export default function AllJobPosts() {
                                         >
                                             View details...
                                         </button>
-                                        <button
-                                            className=" text-[12px] px-[40px] py-[8px] border rounded-md font-bold transition-all duration-500 text-[#04ADE6] bg-primary-light hover:text-white hover:bg-primary"
-                                            onClick={() => openFormModal(jobPost._id)}
-                                        >
-                                            Apply Now
-                                        </button>
+                                        {
+                                            userInfo == null || userInfo.UserType == "Employer" ? ""
+                                                : <button
+                                                    className=" text-[12px] px-[40px] py-[8px] border rounded-md font-bold transition-all duration-500 text-[#04ADE6] bg-primary-light hover:text-white hover:bg-primary"
+                                                    onClick={() => openFormModal(jobPost._id)}
+                                                >
+                                                    Apply Now
+                                                </button>
+                                        }
                                     </div>
                                 </div>
 
@@ -100,12 +104,15 @@ export default function AllJobPosts() {
                                     title="Job Application Details"
                                     footer={
                                         <div className="w-full flex justify-between items-center">
-                                            <button
-                                                className="bg-primary rounded-md px-4 py-2 text-white hover:bg-primary-hover transition-all duration-500"
-                                                onClick={() => openFormModal(jobPost._id)}
-                                            >
-                                                Apply for this job
-                                            </button>
+                                            {
+                                                userInfo == null || userInfo.UserType == "Employer" ? ""
+                                                    : <button
+                                                        className="bg-primary rounded-md px-4 py-2 text-white hover:bg-primary-hover transition-all duration-500"
+                                                        onClick={() => openFormModal(jobPost._id)}
+                                                    >
+                                                        Apply for this job
+                                                    </button>
+                                            }
                                             <Button onClick={closeDetailModal}>Close</Button>
                                         </div>
                                     }
@@ -126,15 +133,7 @@ export default function AllJobPosts() {
                                     onClose={closeFormModal}
                                     title="Apply for this Job"
                                     footer={
-                                        <div className="w-full flex justify-between items-center">
-                                            <Button
-                                                className="bg-primary rounded-md px-4 py-2 text-white hover:bg-primary-hover transition-all duration-500"
-                                                onClick={closeFormModal}
-                                            >
-                                                Submit Application
-                                            </Button>
-                                            <Button onClick={closeFormModal}>Close</Button>
-                                        </div>
+                                        <Button onClick={closeFormModal}>Close</Button>
                                     }
                                     size={'6xl'}
                                     height={'80%'}
@@ -144,7 +143,7 @@ export default function AllJobPosts() {
                             </div>
                         ))
                 ) : (
-                    <div>There are no job applications</div>
+                    <div>There are no job Posts</div>
                 )}
             </div>
             <div>

@@ -8,8 +8,8 @@ export default function UserInformation() {
 
             </div>
             <div className="-translate-y-[65%] flex items-end gap-5 px-4 ">
-                <div className="personalimage w-[200px] h-[200px] bg-neutral-textSecondary rounded-full">
-
+                <div className="personalimage w-[200px] h-[200px] bg-neutral-textSecondary rounded-full overflow-hidden p-2 flex justify-center items-center ">
+                    <img src="/images/EmployerImg.jpg" className="rounded-full w-full h-full" alt="" />
                 </div>
                 <div className="info">
                     <div className="flex flex-col mb-6">

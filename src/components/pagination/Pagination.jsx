@@ -56,14 +56,14 @@ export default function Pagination({ currentPage, totalItems, itemsPerPage, onPa
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
             >
-                <img src="/public/icons/PaginationArrow.svg" className="rotate-180 rounded-full" alt="" />
+                <img src="/icons/PaginationArrow.svg" className="rotate-180 rounded-full" alt="" />
             </button>
             <button
                 className="prevBtn w-[30px] h-[30px] flex justify-center items-center rounded-full bg-[#E7E6E6] transition-all duration-500 hover:bg-[#aaa9a9] disabled:bg-[#eee]"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
             >
-                <img src="/public/icons/PaginationArrow.svg" alt="" />
+                <img src="/icons/PaginationArrow.svg" alt="" />
             </button>
         </div >
     );

@@ -5,7 +5,7 @@ import Navbar from '../components/navbar/Navbar'
 const Root = () => {
     return (
         <>
-            <div className='bg-[#E7E6E6]'>
+            <div className='bg-[#f4f4f4]'>
                 <div className=' w-[85%] m-auto' >
                     <Navbar />
                     <div className="m-auto py-2 ">

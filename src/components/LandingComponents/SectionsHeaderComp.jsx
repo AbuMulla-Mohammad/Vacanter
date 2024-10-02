@@ -9,7 +9,7 @@ export default function SectionsHeaderComp({ title, link, linkUrl }) {
                     {link}
                 </span>
                 <div className="iconWraper">
-                    <img src="/public/icons/Arrow.svg" alt="" />
+                    <img src="/icons/Arrow.svg" alt="" />
                 </div>
             </Link>
         </div>

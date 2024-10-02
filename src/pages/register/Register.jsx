@@ -52,7 +52,13 @@ export default function Register() {
         <div className=' h-[650px] bg-white  relative  flex justify-center items-center w-[70%] rounded-3xl overflow-hidden shadow-[6px_11px_57px_-12px_rgba(0,0,0,0.75)] ' >
             <div className={`toggle-panel text-white w-[50%] min-h-full flex justify-evenly items-center flex-col p-[0_30px] rounded-[0_150px_100px_0] bg-primary translate-x-[-100%] transition-all duration-700 ease-out ${animate ? 'translate-x-[0]' : ''} `}>
                 <h2 className='text-4xl font-bold '>welcome back</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex sit sequi delectus quis libero tempore corporis culpa obcaecati, animi adipisci, nobis laudantium reiciendis facilis dolore assumenda enim repellat labore. Labore.</p>
+                <p>
+                    Create an account to get started with our advanced Applicant Tracking System (ATS)
+                    and CV segmentation platform. Whether you're an employer looking to streamline the
+                    hiring process or a job applicant aiming to enhance your CV, our tools will help you
+                    succeed. Register now to explore features such as CV similarity analysis and structured
+                    document segmentation.
+                </p>
                 <button className='border-2 border-white px-6 py-2 rounded-lg capitalize ' onClick={() => navigate('/Login')}>Log In!</button>
             </div>
             <div className={`w-[50%] flex flex-col justify-center items-center gap-10 p-3 translate-x-[-100%] transition-all duration-700 ${animate ? 'translate-x-[0]' : 'translate-x-[100%]'}`}>

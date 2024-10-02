@@ -13,6 +13,9 @@ import RedirectToLandingOrHome from "../components/common/redirectToLandingOrHom
 import EmployerRoutes from "../ProtectedRoutes/EmployerRoutes";
 import PublicRoutes from "../ProtectedRoutes/PublicRoutes";
 import PrivateRoutes from "../ProtectedRoutes/PrivateRoutes";
+import ApplicantRoutes from './../ProtectedRoutes/ApplicantRoutes';
+import ApplicantJobApplicationsScreen from "../screens/ApplicantJobApplicationsScreen/ApplicantJobApplicationsScreen";
+import PageNotFoundScreen from "../screens/PageNotFoundScreen/PageNotFoundScreen";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -77,7 +80,7 @@ export const router = createBrowserRouter([
                                     </PrivateRoutes>,
                             },
                             {
-                                path: ':id',
+                                path: 'ApplicantsForTheJobPost/:id',
                                 element:
                                     <PrivateRoutes>
                                         <EmployerRoutes>
@@ -88,6 +91,20 @@ export const router = createBrowserRouter([
                         ]
                     },
                     {
+                        path: 'jobApplications',
+                        children: [
+                            {
+                                path: '',
+                                element:
+                                    <PrivateRoutes>
+                                        <ApplicantRoutes>
+                                            <ApplicantJobApplicationsScreen />
+                                        </ApplicantRoutes>
+                                    </PrivateRoutes>,
+                            },
+                        ]
+                    },
+                    {
                         path: 'settings',
                         element:
                             <PrivateRoutes>
@@ -95,7 +112,11 @@ export const router = createBrowserRouter([
                             </PrivateRoutes>
                     },
                 ]
-            }
+            },
+            {
+                path: "*",
+                element: <PageNotFoundScreen />
+            },
         ]
     },
 

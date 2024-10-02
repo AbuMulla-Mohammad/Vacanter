@@ -65,8 +65,13 @@ export default function Login() {
                     />
                 </div>
                 <div className={`toggle-panel text-white w-[50%] min-h-full flex justify-evenly items-center flex-col p-[0_30px] rounded-[150px_0_0_100px] bg-primary translate-x-[-100%] transition-all duration-700 ${animate ? 'translate-x-[0]' : 'translate-x-[100%]'}`}>
-                    <h2 className='text-4xl font-bold '>welcome back</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex sit sequi delectus quis libero tempore corporis culpa obcaecati, animi adipisci, nobis laudantium reiciendis facilis dolore assumenda enim repellat labore. Labore.</p>
+                    <h2 className='text-4xl font-bold capitalize '>welcome back !</h2>
+                    <p>
+                        Please enter your email and password to log into your account.
+                        Access your dashboard, track job applications, and utilize powerful CV segmentation
+                        and similarity analysis tools to improve your hiring or job-seeking experience.
+                        If you haven't registered yet, head over to the registration page.
+                    </p>
                     <button className='border-2 border-white px-6 py-2 rounded-lg capitalize ' onClick={() => navigate('/Register')}>sign up!</button>
                 </div>
             </div >

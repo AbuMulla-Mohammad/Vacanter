@@ -40,9 +40,16 @@ export default function ApplingForm({ jobPostId }) {
                         resume: resumeText,
                     }
                 }
+
+                const formData = new FormData();
+                formData.append('jobPost', jobPostId);
+                formData.append('applicant', applicantId);
+                formData.append('coverLetter', values.coverLetter);
+                formData.append('file', resume);
                 try {
                     setIsLoading(true);
-                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/application`, obj,
+                    console.log("formdata", formData)
+                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/application/create`, formData,
                         {
                             headers: {
                                 token: token,
@@ -57,15 +64,16 @@ export default function ApplingForm({ jobPostId }) {
                         restForm();
                     }
                 } catch (error) {
-                    if (error.response.status === 403) {
+                    if (error?.response.status === 403) {
                         toast.error('Unauthorized', {
                             position: 'top-center',
                         });
                     } else {
-                        toast.error(error.response.data, {
+                        toast.error(error?.response.data.message, {
                             position: 'top-center',
                         });
                     }
+                    console.log(error)
                 } finally {
                     setIsLoading(false);
                 }

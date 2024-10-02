@@ -11,13 +11,17 @@ export default function ApplicantsForTheJobPost({ id }) {
     const [applicantsForTheJob, setApplicantsForTheJob] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [openDetailModalId, setOpenDetailModalId] = useState(null);
+    const [isToggled, setIsToggled] = useState(false);
     const openDetailModal = (id) => setOpenDetailModalId(id);
     const closeDetailModal = () => setOpenDetailModalId(null);
 
-    const getApplicantsForTheJob = async (jobId) => {
+    const getApplicantsForTheJob = async (jobId, top10 = false) => {
         try {
             setIsLoading(true);
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/application/jobPost/${id}`, {
+            const endpoint = top10
+                ? `${import.meta.env.VITE_API_URL}/application/sort/${jobId}?limit=10&page=1`
+                : `${import.meta.env.VITE_API_URL}/application/jobPost/${jobId}`;
+            const { data } = await axios.get(`${endpoint}`, {
                 headers: {
                     token,
                 }
@@ -30,12 +34,15 @@ export default function ApplicantsForTheJobPost({ id }) {
             setIsLoading(false);
         }
     }
-
+    const toggleButton = () => {
+        setIsToggled(!isToggled);
+        getApplicantsForTheJob(id, !isToggled);
+    };
     useEffect(() => {
         if (id) {
-            getApplicantsForTheJob(id);
+            getApplicantsForTheJob(id, isToggled);
         }
-    }, [id]);
+    }, [id, isToggled]);
 
     if (isLoading) {
         return <Loader />
@@ -43,7 +50,18 @@ export default function ApplicantsForTheJobPost({ id }) {
 
     return (
         <div className="p-6  rounded-lg">
-            <h2 className="text-2xl font-bold text-neutral-text mb-4">Applicants</h2>
+            <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-neutral-text mb-4">Applicants</h2>
+                <div className="flex gap-4 items-center">
+                    <span className="font-semibold text-[10px]">
+                        Top 10 Matchs
+                    </span>
+                    <label className="switch">
+                        <input type="checkbox" checked={isToggled} onChange={toggleButton} />
+                        <span className="slider" />
+                    </label>
+                </div>
+            </div>
             {applicantsForTheJob.length === 0 ? (
                 <p className="text-neutral-text">No applicants found for this job post.</p>
             ) : (
@@ -56,10 +74,10 @@ export default function ApplicantsForTheJobPost({ id }) {
                                     <p className="text-neutral-text">{applicant.applicant.email}</p>
                                 </div>
                                 <div>
-                                    <div>
-                                        <div className="text-xs">
+                                    <div className="flex flex-col items-end">
+                                        <div className="text-xs w-fit ">
                                             {
-                                                `${applicant.similarityRatio} %`
+                                                `${applicant.similarityRatio.toFixed(2)} %`
                                             }
                                         </div>
                                         <p className="text-xs text-neutral-text mt-2">Applied At: {formatDate(applicant.createdAt)}</p>

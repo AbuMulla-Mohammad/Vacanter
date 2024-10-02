@@ -103,7 +103,7 @@ export default function JobPostUploader() {
                         openModal();
                     }} className="border-[3px] border-dashed border-primary-hover bg-[#edf2ff] flex flex-col items-center justify-evenly  p-4 rounded-lg w-full h-[80%] text-primary-hover hover:bg-white transition-all duration-500   ">
                         <div className="iconWraper w-[50px] h-[50px]">
-                            <img src="/public/icons/add.svg" className="w-[100%]" alt="" />
+                            <img src="/icons/add.svg" className="w-[100%]" alt="" />
                         </div>
                         <span>Click To Add A Job Post </span>
                     </button>
@@ -112,7 +112,7 @@ export default function JobPostUploader() {
             <ReusableModal
                 isOpen={isOpen}
                 onClose={closeModal}
-                title="Job Application Form"
+                title="Job Post Form"
                 footer={<Button onClick={closeModal}>Close</Button>}
                 height="80%"
                 size={'6xl'}

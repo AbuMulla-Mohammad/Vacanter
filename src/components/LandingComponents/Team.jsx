@@ -55,7 +55,7 @@ export default function Team() {
                         </div>
                     </div>
                     <div className="end w-[35%] ">
-                        <img src="/public/images/TeamSection.png" alt="" />
+                        <img src="/images/TeamSection.png" alt="" />
                     </div>
                 </div>
             </div>

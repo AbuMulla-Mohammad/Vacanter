@@ -37,7 +37,7 @@ export default function Navbar() {
         <header className={`rounded-lg z-50  w-full   bg-cover  backdrop-blur-3xl pt-1 sticky top-0 transition-all duration-700  ${isScrolled ? "bg-primary-light text-white " : "bg-white"}`} >
             <div className=" flex justify-between m-auto items-center py-2  px-4 ">
                 <div className="logo font-semibold text-primary px-3">
-                    <img className="w-[150px] " src="/public/images/VacanterLogo0.svg" alt="" />
+                    <img className="w-[150px] " src="/images/VacanterLogo0.svg" alt="" />
                 </div>
                 <nav className="flex gap-2 ">
                     <NavLink to={'Home'} className={` NavLink nav-link px-2 py-1 transition-all duration-500 rounded-lg `}>
@@ -70,9 +70,9 @@ export default function Navbar() {
                                         <path d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z" />
                                     </svg>
                                     <span className="text-neutral-textSecondary text-sm">
-                                        {
+                                        {/* {
                                             userInfo.username
-                                        }
+                                        } */}
                                     </span>
                                 </NavLink>
                                 {/* <div>
