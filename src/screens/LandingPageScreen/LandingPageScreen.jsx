@@ -3,6 +3,8 @@ import HeroSection from "../../components/LandingComponents/HeroSection";
 import LatestJobs from "../../components/LandingComponents/LatestJobs";
 import Team from "../../components/LandingComponents/Team";
 import Navbar from "../../components/navbar/Navbar";
+import AboutTeam from "../../components/LandingComponents/AboutTeam";
+import OurServices from "../../components/LandingComponents/OurServices";
 
 export default function LandingPageScreen() {
     const [navbarHeight, setNavbarHeight] = useState(0);
@@ -27,7 +29,10 @@ export default function LandingPageScreen() {
                 <LatestJobs />
             </div>
             <div>
-                <Team />
+                <OurServices />
+            </div>
+            <div>
+                <AboutTeam />
             </div>
         </div>
     )

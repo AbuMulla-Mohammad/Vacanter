@@ -26,7 +26,7 @@ export default function ApplicantsForTheJobPost({ id }) {
                     token,
                 }
             });
-            console.log(data)
+            console.log('Data received:', data);
             setApplicantsForTheJob(data);
         } catch (error) {
             console.log(error);
@@ -43,13 +43,21 @@ export default function ApplicantsForTheJobPost({ id }) {
             getApplicantsForTheJob(id, isToggled);
         }
     }, [id, isToggled]);
-
+    useEffect(() => {
+        console.log("test", Math.floor(255, 254));
+    }, [])
+    const getColorForSimilarityRatio = (ratio) => {
+        const green = Math.min(255, Math.floor((ratio / 100) * 255));
+        const red = Math.min(255, Math.floor(((100 - ratio) / 100) * 255));
+        console.log(red, green)
+        return `rgb(${red}, ${green}, 0)`;
+    };
     if (isLoading) {
         return <Loader />
     }
 
     return (
-        <div className="p-6  rounded-lg">
+        <div className="p-6  rounded-lg ">
             <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold text-neutral-text mb-4">Applicants</h2>
                 <div className="flex gap-4 items-center">
@@ -67,7 +75,7 @@ export default function ApplicantsForTheJobPost({ id }) {
             ) : (
                 <ul className="space-y-4">
                     {applicantsForTheJob.map(applicant => (
-                        <li key={applicant._id} className="bg-neutral-white p-4 rounded-lg shadow-md ">
+                        <li key={applicant._id} className="bg-neutral-white ps-4 py-4 rounded-lg shadow-md ">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <h3 className="text-lg font-semibold text-primary-hover">{applicant.applicant.username}</h3>
@@ -75,12 +83,14 @@ export default function ApplicantsForTheJobPost({ id }) {
                                 </div>
                                 <div>
                                     <div className="flex flex-col items-end">
-                                        <div className="text-xs w-fit ">
+                                        <div
+                                            style={{ background: getColorForSimilarityRatio(applicant.similarityRatio) }}
+                                            className={`text-xs w-fit text-white px-2 py-1 rounded-s-md `}>
                                             {
                                                 `${applicant.similarityRatio.toFixed(2)} %`
                                             }
                                         </div>
-                                        <p className="text-xs text-neutral-text mt-2">Applied At: {formatDate(applicant.createdAt)}</p>
+                                        <p className="text-xs text-neutral-text mt-2 pe-4">Applied At: {formatDate(applicant.createdAt)}</p>
                                         <button className="px-4 py-2 text-primary font-medium"
                                             onClick={() => openDetailModal(applicant._id)}
                                         >

@@ -32,7 +32,7 @@ export default function ApplingForm({ jobPostId }) {
                     // resumeText = await pdfToJson(resume);
                     console.log(resumeText);
                 } else if (resume.name.endsWith('.docx')) {
-                    resumeText = await docxToText(resume);
+                    // resumeText = await docxToText(resume);
                     obj = {
                         jobPost: jobPostId,
                         applicant: applicantId,
