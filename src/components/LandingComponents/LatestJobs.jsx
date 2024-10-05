@@ -10,7 +10,7 @@ export default function LatestJobs() {
                     <div className="items flex justify-evenly items-center ">
                         <div className="item w-[31%] shadow-md  flex flex-col  overflow-hidden rounded-[20px] bg-white ">
                             <div className="imageWraper w-full ">
-                                <img className="w-full h-[170px] " src={`/public/images/img2LatestJobSection.jpg`} alt="item image " />
+                                <img className="w-full h-[170px] " src={`/images/img2LatestJobSection.jpg`} alt="item image " />
                             </div>
                             <div className="p-[25px] flex flex-col gap-[25px]">
                                 <div className="itemHeader">
@@ -31,7 +31,7 @@ export default function LatestJobs() {
                             </div>
                         </div><div className="item w-[31%] shadow-md  flex flex-col  overflow-hidden rounded-[20px] bg-white ">
                             <div className="imageWraper w-full ">
-                                <img className="w-full h-[170px] object-cover " src={`/public/images/jobSectionImg4.png`} alt="item image " />
+                                <img className="w-full h-[170px] object-cover " src={`/images/jobSectionImg4.png`} alt="item image " />
                             </div>
                             <div className="p-[25px] flex flex-col gap-[25px]">
                                 <div className="itemHeader">
@@ -52,7 +52,7 @@ export default function LatestJobs() {
                             </div>
                         </div><div className="item w-[31%] shadow-md  flex flex-col  overflow-hidden rounded-[20px] bg-white ">
                             <div className="imageWraper w-full ">
-                                <img className="w-full h-[170px] " src={`/public/images/jobSectionImg3.png`} alt="item image " />
+                                <img className="w-full h-[170px] " src={`/images/jobSectionImg3.png`} alt="item image " />
                             </div>
                             <div className="p-[25px] flex flex-col gap-[25px]">
                                 <div className="itemHeader">
