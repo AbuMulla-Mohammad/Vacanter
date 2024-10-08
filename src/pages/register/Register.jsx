@@ -35,7 +35,7 @@ export default function Register() {
 
         } catch (error) {
             console.log(error)
-            toast.error(error.response.data, {
+            toast.error(error.response?.data?.message || "An error occurred", {
                 position: 'top-center',
             });
         } finally {
