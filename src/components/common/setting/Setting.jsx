@@ -31,6 +31,14 @@ export default function Setting() {
                                 Enable or disable two-factor authentication for extra security.
                             </p>
                         </Link>
+                        <Link to={"profileSettings"} className="flex flex-col gap-2">
+                            <span className=" font-semibold">
+                                Profile
+                            </span>
+                            <p className="text-sm text-neutral-textSecondary px-2">
+                                update Your Profile image and cover image
+                            </p>
+                        </Link>
                     </div>
                 </section>
                 <section className="subscriptionAndBilling flex flex-col gap-4">

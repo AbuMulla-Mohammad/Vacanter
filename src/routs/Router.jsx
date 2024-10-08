@@ -16,6 +16,7 @@ import PrivateRoutes from "../ProtectedRoutes/PrivateRoutes";
 import ApplicantRoutes from './../ProtectedRoutes/ApplicantRoutes';
 import ApplicantJobApplicationsScreen from "../screens/ApplicantJobApplicationsScreen/ApplicantJobApplicationsScreen";
 import PageNotFoundScreen from "../screens/PageNotFoundScreen/PageNotFoundScreen";
+import ProfileSettingsScreen from "../screens/ProfileSettingsScreen/ProfileSettingsScreen";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -106,10 +107,22 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: 'settings',
-                        element:
-                            <PrivateRoutes>
-                                <SettingsScreen />
-                            </PrivateRoutes>
+                        children: [
+                            {
+                                path: '',
+                                element:
+                                    <PrivateRoutes>
+                                        <SettingsScreen />
+                                    </PrivateRoutes>,
+                            },
+                            {
+                                path: 'profileSettings',
+                                element:
+                                    <PrivateRoutes>
+                                        <ProfileSettingsScreen />
+                                    </PrivateRoutes>
+                            }
+                        ]
                     },
                 ]
             },
