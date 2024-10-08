@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import Loader from "../../common/loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -52,8 +52,8 @@ export default function EmployerJobPosts() {
                         .slice()
                         .reverse()
                         .map((jobPost) => (
-                            <>
-                                <div key={jobPost._id} className="shadow-md rounded-lg p-6 bg-white w-[49%] flex flex-col gap-4">
+                            <Fragment key={jobPost._id}>
+                                <div className="shadow-md rounded-lg p-6 bg-white w-[49%] flex flex-col gap-4">
                                     <div className="postHeader">
                                         <h2 className="text-xl font-semibold text-black">{jobPost.title}</h2>
                                         <div className="flex gap-2">
@@ -191,7 +191,7 @@ export default function EmployerJobPosts() {
 
                                     </div>
                                 </ReusableModal>
-                            </>
+                            </Fragment>
                         ))
                 ) : (
                     <div>There are no job Posts</div>
