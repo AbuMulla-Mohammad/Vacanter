@@ -17,6 +17,7 @@ import ApplicantRoutes from './../ProtectedRoutes/ApplicantRoutes';
 import ApplicantJobApplicationsScreen from "../screens/ApplicantJobApplicationsScreen/ApplicantJobApplicationsScreen";
 import PageNotFoundScreen from "../screens/PageNotFoundScreen/PageNotFoundScreen";
 import ProfileSettingsScreen from "../screens/ProfileSettingsScreen/ProfileSettingsScreen";
+import EmailAndContactInfoScreen from "../screens/EmailAndContactInfoScreen/EmailAndContactInfoScreen";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -121,7 +122,14 @@ export const router = createBrowserRouter([
                                     <PrivateRoutes>
                                         <ProfileSettingsScreen />
                                     </PrivateRoutes>
-                            }
+                            },
+                            {
+                                path: 'emailAndContactInfo',
+                                element:
+                                    <PrivateRoutes>
+                                        <EmailAndContactInfoScreen />
+                                    </PrivateRoutes>
+                            },
                         ]
                     },
                 ]

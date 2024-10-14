@@ -7,7 +7,7 @@ export default function Setting() {
                 <section className="profileSettings flex flex-col gap-4">
                     <h2 className="text-xl font-bold">Account Settings</h2>
                     <div className=" flex flex-col gap-3 px-5">
-                        <Link className="flex flex-col gap-2">
+                        <Link to={"emailAndContactInfo"} className="flex flex-col gap-2">
                             <span className=" font-semibold">
                                 Email & Contact Info
                             </span>

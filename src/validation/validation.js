@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import ChangeEmail from './../components/common/setting/ChangeEmail';
 
 export const loginValidationSchema = Yup.object({
     email: Yup.string().email('Invalid email address').required('email is Required').max(255).trim(),
@@ -50,4 +51,7 @@ export const ApplyForAJobValidationSchema = Yup.object().shape({
             }
             return false;
         }),
+});
+export const ChangeEmailValidationSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email address').required('email is Required').max(255).trim(),
 });
