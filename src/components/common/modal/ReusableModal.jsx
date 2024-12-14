@@ -8,7 +8,7 @@ import {
     ModalOverlay,
 } from '@chakra-ui/react';
 
-const ReusableModal = ({ isOpen, onClose, title, children, footer, width, height, overlay, size }) => {
+const ReusableModal = ({ isOpen, onClose, title, children, footer, width, height, overlay, size, closeOnOverlayClick = true }) => {
     const defaultOverlay = (
         <ModalOverlay
             bg="blackAlpha.600"
@@ -17,7 +17,7 @@ const ReusableModal = ({ isOpen, onClose, title, children, footer, width, height
     );
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} isCentered size={size}>
+        <Modal isOpen={isOpen} onClose={onClose} isCentered size={size} closeOnOverlayClick={closeOnOverlayClick}>
             {overlay || defaultOverlay}
             <ModalContent
                 sx={{

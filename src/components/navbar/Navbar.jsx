@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "../../features/auth/authSlice";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { clearUserInfo } from "../../features/userInfo/userInfoSlice";
 import './Navbar.css'
 import { useEffect, useState } from "react";
 
-export default function Navbar() {
+export default function Navbar({ scrollToSection, heroSectionRef, latestJobsSectionRef, ourServicesRef, aboutTeamRef, setSectionRefToNavigate, sectionRefToNavigate }) {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [pendingSectionRef, setPendingSectionRef] = useState(null);
     const token = useSelector(state => state.auth.token)
-    const userInfo = useSelector(state => state.userInfo.userInfo);
-    useEffect(() => {
-        console.log("from the navbar this is user info", userInfo)
-    }, [userInfo])
+    const location = useLocation();
+    // const userInfo = useSelector(state => state.userInfo.userInfo);
+    // useEffect(() => {
+    //     console.log("from the navbar this is user info", userInfo)
+    // }, [userInfo])
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleLogOutClick = () => {
@@ -33,6 +35,27 @@ export default function Navbar() {
             window.removeEventListener('scroll', handleNavBarScroll);
         };
     }, [])
+
+    useEffect(() => {
+        if (location.state && location.state.sectionRef) {
+            scrollToSection(location.state.sectionRef);
+            console.log("from  if (location.state && location.state.sectionRef)")
+        } else if (pendingSectionRef) {
+            scrollToSection(pendingSectionRef);
+            setPendingSectionRef(null);
+        }
+    }, [location, scrollToSection, pendingSectionRef]);
+    const handleNavigationClick = () => {
+        if (location.pathname !== '/landing') {
+            navigate('/landing', { state: { sectionRefToNavigate } });
+        } else {
+            scrollToSection(sectionRefToNavigate);
+        }
+        console.log("sectionRef", sectionRefToNavigate)
+    };
+    useEffect(() => {
+        console.log(" scrollToSection, heroSectionRef, latestJobsSectionRef, ourServicesRef, aboutTeamRef", heroSectionRef, latestJobsSectionRef, ourServicesRef, aboutTeamRef)
+    }, [scrollToSection, heroSectionRef, latestJobsSectionRef, ourServicesRef, aboutTeamRef])
     return (
         <header className={`rounded-lg z-50  w-full   bg-cover  backdrop-blur-3xl pt-1 sticky top-0 transition-all duration-700  ${isScrolled ? "bg-primary-light text-white " : "bg-white"}`} >
             <div className=" flex justify-between m-auto items-center py-2  px-4 ">
@@ -40,18 +63,30 @@ export default function Navbar() {
                     <img className="w-[150px] " src="/images/VacanterLogo0.svg" alt="" />
                 </div>
                 <nav className="flex gap-2 ">
-                    <NavLink to={'Home'} className={` NavLink nav-link px-2 py-1 transition-all duration-500 rounded-lg `}>
+                    <button onClick={() => {
+                        handleNavigationClick();
+                        setSectionRefToNavigate(heroSectionRef);
+                    }} className={` NavLink nav-link px-2 py-1 transition-all duration-500 rounded-lg `}>
                         Home
-                    </NavLink>
-                    <NavLink to={'/test'} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg `}>
-                        Services
-                    </NavLink>
-                    <NavLink to={'/test2'} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg`}>
-                        About
-                    </NavLink>
-                    <NavLink to={'/test'} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg `}>
-                        Pricing
-                    </NavLink>
+                    </button>
+                    <button onClick={() => {
+                        handleNavigationClick();
+                        setSectionRefToNavigate(latestJobsSectionRef);
+                    }} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg `}>
+                        Latest Jobs
+                    </button>
+                    <button onClick={() => {
+                        handleNavigationClick();
+                        setSectionRefToNavigate(ourServicesRef);
+                    }} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg`}>
+                        Our Services
+                    </button>
+                    <button onClick={() => {
+                        handleNavigationClick();
+                        setSectionRefToNavigate(aboutTeamRef);
+                    }} className={`NavLink px-2 py-1 transition-all duration-500 rounded-lg `}>
+                        About Team
+                    </button>
                 </nav>
                 <div>
                     {token == null ?
