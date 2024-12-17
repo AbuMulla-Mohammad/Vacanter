@@ -11,7 +11,6 @@ import Pagination from "../../pagination/Pagination";
 export default function AllJobPosts() {
     const { jobLocation, jobType } = useSelector(state => state.filters);
     const { userInfo } = useSelector(state => state.userInfo);
-    useEffect(() => { console.log("userInfo", userInfo.UserType) }, [userInfo])
     const [jobPosts, setJobPosts] = useState([]);
     const [isLoading, setIsloading] = useState(false);
     const [openDetailModalId, setOpenDetailModalId] = useState(null);
@@ -69,7 +68,7 @@ export default function AllJobPosts() {
                                         <p className="text-neutral-textSecondary capitalize">{jobPost.type}</p>
                                     </div>
                                 </div>
-                                <div className="postBody text-neutral-textSecondary">
+                                <div className="postBody text-neutral-textSecondary h-[50px] overflow-hidden">
                                     {
                                         jobPost.description
                                     }
@@ -101,7 +100,10 @@ export default function AllJobPosts() {
                                 <ReusableModal
                                     isOpen={openDetailModalId === jobPost._id}
                                     onClose={closeDetailModal}
-                                    title="Job Application Details"
+                                    title={<div className="flex justify-center items-center gap-4">
+                                        <h2>{jobPost.title} Application Details</h2>
+                                        <span className="text-sm text-neutral-textSecondary"> in {jobPost.location}</span>
+                                    </div>}
                                     footer={
                                         <div className="w-full flex justify-between items-center">
                                             {
@@ -119,6 +121,16 @@ export default function AllJobPosts() {
                                     size={'6xl'}
                                     height={'80%'}
                                 >
+                                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Company:</h3>
+                                    <div>
+                                        {jobPost.company}
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Description:</h3>
+                                    <div>
+                                        {
+                                            jobPost.description
+                                        }
+                                    </div>
                                     <h3 className="text-lg font-semibold text-gray-800 mb-2">Requirements:</h3>
                                     <ul className="list-disc list-inside text-gray-700">
                                         <li>Languages: {jobPost.requirements.Languages}</li>

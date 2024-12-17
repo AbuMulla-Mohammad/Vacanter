@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "../../features/auth/authSlice";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { clearUserInfo } from "../../features/userInfo/userInfoSlice";
 import './Navbar.css'
 import { useEffect, useState } from "react";
@@ -63,6 +63,9 @@ export default function Navbar({ scrollToSection, heroSectionRef, latestJobsSect
                     <img className="w-[150px] " src="/images/VacanterLogo0.svg" alt="" />
                 </div>
                 <nav className="flex gap-2 ">
+                    <NavLink className={"NavLink nav-link px-2 py-1 transition-all duration-500 rounded-lg"} to="/home">
+                        Job Posts
+                    </NavLink>
                     <button onClick={() => {
                         handleNavigationClick();
                         setSectionRefToNavigate(heroSectionRef);
